@@ -1,4 +1,4 @@
-# bin/bash
+#!/usr/bin/bash
 
 prompt_install() {
     echo -n "$1 is not installed. Would you like to install it? (y/n) " >&2
@@ -52,39 +52,15 @@ check_default_shell() {
     fi
 }
 
-git pull origin master
-
+# git pull origin master
 check_if_installed vim
-echo
-
 check_if_installed tmux
-echo
-
 check_default_shell
-echo
-
-echo -n "Would you like to backup your current dotfiles? (y/n) "
-answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
-if echo "$answer" | grep -iq "^y" ;then
-    mv ~/.tmux.conf ~/.tmux.conf.old
-    mv ~/.vimrc ~/.vimrc.old
-else
-    echo -e "\nNot backing up old dotfiles."
-fi
-
 
 rsync   --exclude ".git/" \
         --exclude "install.sh" \
         --exclude "README.md" \
-        -avh --no-perms . ~;
+        -avh --no-perms . ~
 
 source ~/.bash_profile
 
-# cp tmux/.tmux.conf ~/
-# cp tmux/.tmux.conf.local ~/
-
-# cp vim/.vim.rc ~/.vimrc
-# cp vim/.vim.rc ~/.vimrc
-# cp vim/.vim.rc ~/.vimrc
-
-# echo "Please log out and log back in for default shell to be initialized."
