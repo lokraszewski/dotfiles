@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 prompt_install() {
     echo -n "$1 is not installed. Would you like to install it? (y/n) " >&2
