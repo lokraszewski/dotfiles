@@ -35,7 +35,7 @@ check_if_installed() {
 
 PACKAGE_FILE=$(find . -name "package_list")
 
-# while read p; do
-#     echo "Checking $p"
-#     check_if_installed $p
-# done < $PACKAGE_FILE
+while read p; do
+    echo "Checking $p"
+    check_if_installed $p
+done < $PACKAGE_FILE
