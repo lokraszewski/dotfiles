@@ -1,0 +1,104 @@
+" Settings in this file may depend on plugins, so let's install them first.
+" Not to be confused with the contents of ~/.vim/plugin/* which are
+" configuration options for each plugin and automatically loaded by Vim.
+source ~/.vim/plugin/plugins.vim
+
+"-------------------------------------------------------------------------------
+" Basics
+"-------------------------------------------------------------------------------
+
+syntax on
+
+let mapleader=','                     " Leader - override the default \
+
+set autoread                          " Auto reload changed files
+set wildmenu                          " Tab autocomplete in command mode
+set backspace=indent,eol,start        " http://vi.stackexchange.com/a/2163
+set laststatus=2                      " Show status line on startup
+set splitright                        " Open new splits to the right
+set splitbelow                        " Open new splits to the bottom
+set lazyredraw                        " Reduce the redraw frequency
+set ttyfast                           " Send more characters in fast terminals
+set nowrap                            " Don't wrap long lines
+set listchars=extends:→               " Show arrow if line continues rightwards
+set listchars+=precedes:←             " Show arrow if line continues leftwards
+set nobackup nowritebackup noswapfile " Turn off backup files
+set noerrorbells novisualbell         " Turn off visual and audible bells
+set expandtab shiftwidth=2 tabstop=2  " Two spaces for tabs everywhere
+set hlsearch                          " Highlight search results
+set ignorecase smartcase              " Search queries intelligently set case
+set incsearch                         " Show search results as you type
+set timeoutlen=1000 ttimeoutlen=0     " Remove timeout when hitting escape
+set showcmd                           " Show size of visual selection
+
+" Ignored files/directories from autocomplete (and CtrlP)
+set wildignore+=*/tmp/*
+set wildignore+=*.so
+set wildignore+=*.zip
+set wildignore+=*/vendor/bundle/*
+set wildignore+=*/node_modules/
+
+
+"-------------------------------------------------------------------------------
+" Interface
+"-------------------------------------------------------------------------------
+
+set number            " Enable line numbers
+set cursorline        " Horizontal crosshair
+set cursorcolumn      " Vertical crosshair
+set scrolloff=5       " Leave 5 lines of buffer when scrolling
+set sidescrolloff=10  " Leave 10 characters of horizontal buffer when scrolling
+
+" Hide horizontal cursor when focus changes
+augroup CursorLine
+    au!
+    au VimEnter * setlocal cursorline
+    au WinEnter * setlocal cursorline
+    au BufWinEnter * setlocal cursorline
+    au WinLeave * setlocal nocursorline
+augroup END
+
+" Hide vertical cursor when focus changes
+augroup CursorColumn
+    au!
+    au VimEnter * setlocal cursorcolumn
+    au WinEnter * setlocal cursorcolumn
+    au BufWinEnter * setlocal cursorcolumn
+    au WinLeave * setlocal nocursorcolumn
+augroup END
+
+
+"-------------------------------------------------------------------------------
+" Colors & Formatting
+"-------------------------------------------------------------------------------
+
+" colorscheme base16-ocean
+" let base16colorspace=256
+" set background=dark
+" Showcase comments in italics
+" highlight Comment cterm=italic gui=italic
+
+
+"-------------------------------------------------------------------------------
+" Custom Movement
+"-------------------------------------------------------------------------------
+
+" Don't deselect visual block after indent/unindent
+vnoremap < <gv
+vnoremap > >gv
+
+" Shortcut for <CTRL> + hjkl to traverse panes
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Bash like keys for the Vim command line
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <C-K> <C-U>
+
+" Remap j and k to act as expected when used on long, wrapped, lines
+nnoremap j gj
+nnoremap k gk
+

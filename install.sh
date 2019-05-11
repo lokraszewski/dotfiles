@@ -1,66 +1,105 @@
 #!/bin/bash
 
-prompt_install() {
-    echo -n "$1 is not installed. Would you like to install it? (y/n) " >&2
-    old_stty_cfg=$(stty -g)
-    stty raw -echo
-    answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
-    stty $old_stty_cfg && echo
-    if echo "$answer" | grep -iq "^y" ;then
-        # This could def use community support
-        if [ -x "$(command -v apt-get)" ]; then
-            sudo apt-get install $1 -y
+set -e
 
-        elif [ -x "$(command -v brew)" ]; then
-            brew install $1
+DOTFILES_DIR=$(pwd -P)
+echo ''
 
-        elif [ -x "$(command -v pkg)" ]; then
-            sudo pkg install $1
-
-        elif [ -x "$(command -v pacman)" ]; then
-            sudo pacman -S $1
-
-        else
-            echo "No valid package manager found!"
-        fi
-    fi
+info () {
+  printf "\r  [ \033[00;34m..\033[0m ] $1\n"
 }
 
-check_if_installed() {
-    if ! [ -x "$(command -v $1)" ]; then
-        prompt_install $1
-    else
-        echo "$1 is installed."
-    fi
+user () {
+  printf "\r  [ \033[0;33m??\033[0m ] $1\n"
 }
 
-
-check_default_shell() {
-    if [ -z "${SHELL##*bash*}" ] ;then
-            echo "Default shell is bash."
-    else
-        echo -n "Default shell is not bash. Do you want to chsh -s \$(which bash)? (y/n)"
-        old_stty_cfg=$(stty -g)
-        stty raw -echo
-        answer=$( while ! head -c 1 | grep -i '[ny]' ;do true ;done )
-        stty $old_stty_cfg && echo
-        if echo "$answer" | grep -iq "^y" ;then
-            chsh -s $(which bash)
-        else
-            echo "Warning: Your configuration won't work properly. If you exec bash, it'll exec tmux which will exec your default shell which isn't bash."
-        fi
-    fi
+success () {
+  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
 }
 
-# git pull origin master
-check_if_installed vim
-check_if_installed tmux
-check_default_shell
+fail () {
+  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+  echo ''
+  exit
+}
 
-rsync   --exclude ".git/" \
-        --exclude "install.sh" \
-        --exclude "README.md" \
-        -avh --no-perms . ~
+link_file () {
+  local src=$1 dst=$2
+  local overwrite= backup= skip=
+  local action=
 
-source ~/.bash_profile
+  if [ -f "$dst" -o -d "$dst" -o -L "$dst" ] ; then
 
+    if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ] ; then
+      local currentSrc="$(readlink $dst)"
+      if [ "$currentSrc" == "$src" ] ; then
+        skip=true;
+      else
+        user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
+        [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
+        read -n 1 action
+        case "$action" in
+          o )
+            overwrite=true;;
+          O )
+            overwrite_all=true;;
+          b )
+            backup=true;;
+          B )
+            backup_all=true;;
+          s )
+            skip=true;;
+          S )
+            skip_all=true;;
+          * )
+            ;;
+        esac
+      fi
+    fi
+
+    overwrite=${overwrite:-$overwrite_all}
+    backup=${backup:-$backup_all}
+    skip=${skip:-$skip_all}
+
+    if [ "$overwrite" == "true" ] ; then
+      rm -rf "$dst"
+      success "removed $dst"
+    fi
+
+    if [ "$backup" == "true" ] ; then
+      mv "$dst" "${dst}.backup"
+      success "moved $dst to ${dst}.backup"
+    fi
+
+    if [ "$skip" == "true" ] ; then
+      success "skipped $src"
+    fi
+  fi
+
+  if [ "$skip" != "true" ] ; then
+    ln -s "$1" "$2"
+    success "linked $1 to $2"
+  fi
+}
+
+install_dotfiles () {
+  info 'installing dotfiles'
+
+  local overwrite_all=false backup_all=false skip_all=false
+
+  for src in $(find -H "${DOTFILES_DIR}" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
+  do
+    dst="$HOME/.$(basename "${src%.*}")"
+    link_file "$src" "$dst"
+  done
+}
+
+install_dotfiles
+
+# find the installers and run them iteratively
+for installer in $(find . -name '*install*' -not -path './install.sh'); do
+    sh -c "${installer}"
+done
+
+echo ''
+echo '  All installed!'
