@@ -49,6 +49,7 @@ Plug 'ludovicchabant/vim-gutentags'
 
 " Themes
 Plug 'chriskempson/base16-vim'
+Plug 'chase/focuspoint-vim'
 
 " Display hex colors
 Plug 'chrisbra/Colorizer'
