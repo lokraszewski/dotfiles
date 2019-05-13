@@ -164,3 +164,15 @@ function o() {
 function tre() {
     tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+function cmake_make_lower() {
+    cmake --help-command-list |
+    grep -v "cmake version" |
+    while read c; do
+        echo 's/\b'"$(echo $c | tr '[:lower:]' '[:upper:]')"'\(\s*\)(/'"$c"'\1(/g'
+    done >convert.sed &&
+    git ls-files -z -- bootstrap '*.cmake' '*.cmake.in' '*CMakeLists.txt' |
+    egrep -z -v '^(Utilities/cm|Source/kwsys/)' |
+    xargs -0 sed -i -f convert.sed &&
+    rm convert.sed
+}
