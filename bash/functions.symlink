@@ -176,3 +176,18 @@ function cmake_make_lower() {
     xargs -0 sed -i -f convert.sed &&
     rm convert.sed
 }
+
+function pathadd() {
+    newelement=${1%/}
+    if [ -d "$1" ] && ! echo $PATH | grep -E -q "(^|:)$newelement($|:)" ; then
+        if [ "$2" = "after" ] ; then
+            PATH="$PATH:$newelement"
+        else
+            PATH="$newelement:$PATH"
+        fi
+    fi
+}
+
+function pathrm() {
+    PATH="$(echo $PATH | sed -e "s;\(^\|:\)${1%/}\(:\|\$\);\1\2;g" -e 's;^:\|:$;;g' -e 's;::;:;g')"
+}
