@@ -95,7 +95,7 @@ install_dotfiles () {
 }
 
 run_all_install () {
-  for installer in $(find . -name '*install.sh*' -not -path './install.sh'); do
+  for installer in $(find . -name '*install*' -not -path './install.sh'); do
       info "running ${installer}"
       sh -c "${installer}"
   done
