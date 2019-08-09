@@ -94,13 +94,21 @@ install_dotfiles () {
   done
 }
 
-install_dotfiles
+run_all_install () {
+  for installer in $(find . -name '*install.sh*' -not -path './install.sh'); do
+      info "running ${installer}"
+      sh -c "${installer}"
+  done
+}
 
-# find the installers and run them iteratively
-for installer in $(find . -name '*install.sh*' -not -path './install.sh'); do
-    info "running ${installer}"
-    sh -c "${installer}"
-done
 
-echo ''
-echo '  All installed!'
+main (){
+  echo ''
+  install_dotfiles
+  run_all_install
+  echo '  All installed!'
+}
+
+main "$@"
+
+
