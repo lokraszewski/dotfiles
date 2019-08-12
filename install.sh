@@ -1,27 +1,10 @@
 #!/bin/bash
 
 set -e
+source ./common.sh
 
 DOTFILES_DIR=$(pwd -P)
 echo ''
-
-info () {
-  printf "\r  [ \033[00;34m..\033[0m ] $1\n"
-}
-
-user () {
-  printf "\r  [ \033[0;33m??\033[0m ] $1\n"
-}
-
-success () {
-  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
-}
-
-fail () {
-  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
-  echo ''
-  exit
-}
 
 link_file () {
   local src=$1 dst=$2
@@ -97,7 +80,7 @@ install_dotfiles () {
 run_all_install () {
   for installer in $(find . -name '*install*' -not -path './install.sh'); do
       info "running ${installer}"
-      sh -c "${installer}"
+      sh -c "${installer} ${DOTFILES_DIR}"
   done
 }
 
@@ -106,7 +89,7 @@ main (){
   echo ''
   install_dotfiles
   run_all_install
-  echo '  All installed!'
+  success '  All installed!'
 }
 
 main "$@"

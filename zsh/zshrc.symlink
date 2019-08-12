@@ -1,4 +1,10 @@
 # load zgen
+
+for file in ~/.{path,aliases,functions,extra,bash_prompt}; do
+    [ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
+
 source "${HOME}/.zgen/zgen.zsh"
 
 # if the init scipt doesn't exist

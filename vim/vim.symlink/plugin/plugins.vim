@@ -29,7 +29,6 @@ Plug 'groenewege/vim-less'
 Plug 'tpope/vim-haml'
 Plug 'pangloss/vim-javascript'
 Plug 'jparise/vim-graphql'
-Plug 'fatih/vim-go'
 Plug 'dag/vim-fish'
 Plug 'vim-scripts/bird-syntax'
 

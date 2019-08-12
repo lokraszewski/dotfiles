@@ -1,4 +1,5 @@
 #!/bin/sh
+source $1/common.sh
 vim_config_file=~/.config/vim
 
 mkdir -p ~/.config/
