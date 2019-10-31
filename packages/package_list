@@ -1,7 +1,15 @@
 tmux
 gcc
+clang
 tldr
 entr
 zsh
 curl
 git
+vim
+keepassxc
+cppcheck
+python
+python3
+python-pip
+python3-pip
