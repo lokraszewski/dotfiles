@@ -15,3 +15,5 @@ python-pip
 python3-pip
 cmake
 pylint
+shellcheck
+fzf
