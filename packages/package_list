@@ -17,3 +17,6 @@ cmake
 pylint
 shellcheck
 fzf
+tio
+fswatch
+sshpass
