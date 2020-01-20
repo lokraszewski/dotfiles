@@ -1,1 +1,1 @@
-autocmd BufWritePre * StripWhitespace
+autocmd BufWritePre StripWhitespace

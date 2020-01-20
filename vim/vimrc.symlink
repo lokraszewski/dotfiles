@@ -9,8 +9,7 @@ source ~/.vim/plugin/plugins.vim
 
 syntax on
 
-let mapleader=','                     " Leader - override the default \
-
+let mapleader=','                     " Leader - override the default
 set autoread                          " Auto reload changed files
 set wildmenu                          " Tab autocomplete in command mode
 set backspace=indent,eol,start        " http://vi.stackexchange.com/a/2163
@@ -44,7 +43,7 @@ set wildignore+=*/node_modules/
 "-------------------------------------------------------------------------------
 
 set number            " Enable line numbers
-" set cursorline        " Horizontal crosshair
+set cursorline        " Horizontal crosshair
 set scrolloff=5       " Leave 5 lines of buffer when scrolling
 set sidescrolloff=10  " Leave 10 characters of horizontal buffer when scrolling
 
