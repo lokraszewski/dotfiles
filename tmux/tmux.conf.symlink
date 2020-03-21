@@ -8,9 +8,8 @@ set-option -g history-limit 20000       # Scrollback history
 set-option -s escape-time 0             # No delay when hitting escape
 
 # Bind to CTRL + a like screen
-unbind C-b
-set -g prefix C-a
-bind a send-prefix
+set -g prefix C-b
+bind b send-prefix
 
 # Keybindings
 bind '"'  split-window -v -c "#{pane_current_path}"   # Split pane horizontally
