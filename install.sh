@@ -6,6 +6,34 @@ source ./common.sh
 DOTFILES_DIR=$(pwd -P)
 echo ''
 
+
+
+check_if_installed() {
+    if command_exists $1 ; then
+        success "$1 is installed."
+    else
+        install $1
+    fi
+}
+
+
+
+pkg_mgr=''
+if command_exists apt-get ; then
+    pkg_mgr="apt-get install -y"
+elif command_exists brew ; then
+    pkg_mgr="brew install"
+elif command_exists pkg ; then
+    pkg_mgr="pkg install"
+elif command_exists pacman ; then
+    pkg_mgr="pacman -S"
+else
+    error "No valid package manager found!"
+fi
+
+
+
+
 link_file () {
   local src=$1 dst=$2
   local overwrite= backup= skip=
@@ -77,35 +105,9 @@ install_dotfiles () {
   done
 }
 
-install() {
-    if command_exists apt-get ; then
-        sudo apt-get install $1 -y
-    elif command_exists brew ; then
-        brew install $1
-    elif command_exists pkg ; then
-        sudo pkg install $1
-    elif command_exists pacman ; then
-        sudo pacman -S $1
-    else
-        error "No valid package manager found!"
-    fi
-}
-
-check_if_installed() {
-    if command_exists $1 ; then
-        success "$1 is installed."
-    else
-        install $1
-    fi
-}
-
 
 install_package(){
-  PACKAGE_FILE=$(find . -name "package_list")
-  while read p; do
-      info "Checking $p"
-      check_if_installed $p
-  done < $PACKAGE_FILE
+  cat packages/package_list | xargs sudo ${pkg_mgr} 
 }
 
 run_all_install () {
