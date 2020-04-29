@@ -11,8 +11,6 @@ keepassxc
 cppcheck
 python
 python3
-python-pip
-python3-pip
 pylint
 shellcheck
 fzf

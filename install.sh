@@ -111,7 +111,7 @@ install_package(){
 }
 
 run_all_install () {
-  for installer in $(find . -maxdepth 2-name '*install*.sh' -not -path './install.sh'); do
+  for installer in $(find . -maxdepth 2 -name '*install*.sh' -not -path './install.sh'); do
       info "running ${installer}"
       sh -c "${installer} ${DOTFILES_DIR}"
   done
