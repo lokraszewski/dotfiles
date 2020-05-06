@@ -14,17 +14,19 @@ unset file;
 
 source "${HOME}/.zgen/zgen.zsh"
 
+#ZSH_THEME=powerlevel10k/powerlevel10k
 # if the init scipt doesn't exist
 if ! zgen saved; then
     echo "Creating a zgen save"
 
-    zgen oh-my-zsh
+    #zgen oh-my-zsh
 
-    zgen oh-my-zsh plugins/git
-    zgen oh-my-zsh plugins/sudo
-    zgen oh-my-zsh plugins/fzf
-    zgen oh-my-zsh plugins/command-not-found
+    #zgen oh-my-zsh plugins/git
+    #zgen oh-my-zsh plugins/sudo
+    #zgen oh-my-zsh plugins/fzf
+    #zgen oh-my-zsh plugins/command-not-found
     #zgen oh-my-zsh themes/kphoen
+    
     zgen load romkatv/powerlevel10k powerlevel10k
     zgen load zsh-users/zsh-syntax-highlighting
 
