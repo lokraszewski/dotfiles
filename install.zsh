@@ -1,38 +1,13 @@
-#!/bin/bash
+#!/bin/zsh
 
 set -e
-source ./common.sh
 
 DOTFILES_DIR=$(pwd -P)
-echo ''
+source ${DOTFILES_DIR}/common.zsh
 
-
-
-check_if_installed() {
-    if command_exists $1 ; then
-        success "$1 is installed."
-    else
-        install $1
-    fi
-}
-
-
-
-pkg_mgr=''
-if command_exists apt-get ; then
-    pkg_mgr="apt-get install -y"
-elif command_exists brew ; then
-    pkg_mgr="brew install"
-elif command_exists pkg ; then
-    pkg_mgr="pkg install"
-elif command_exists pacman ; then
-    pkg_mgr="pacman -S"
-else
-    error "No valid package manager found!"
-fi
-
-
-
+overwrite_all=false 
+backup_all=false 
+skip_all=false
 
 link_file () {
   local src=$1 dst=$2
@@ -41,9 +16,9 @@ link_file () {
 
   if [ -f "$dst" -o -d "$dst" -o -L "$dst" ] ; then
 
-    if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ] ; then
+    if [ "$overwrite_all" = "false" ] && [ "$backup_all" = "false" ] && [ "$skip_all" = "false" ] ; then
       local currentSrc="$(readlink $dst)"
-      if [ "$currentSrc" == "$src" ] ; then
+      if [ "$currentSrc" = "$src" ] ; then
         skip=true;
       else
         user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
@@ -72,17 +47,17 @@ link_file () {
     backup=${backup:-$backup_all}
     skip=${skip:-$skip_all}
 
-    if [ "$overwrite" == "true" ] ; then
+    if [ "$overwrite" = "true" ] ; then
       rm -rf "$dst"
       success "removed $dst"
     fi
 
-    if [ "$backup" == "true" ] ; then
+    if [ "$backup" = "true" ] ; then
       mv "$dst" "${dst}.backup"
       success "moved $dst to ${dst}.backup"
     fi
 
-    if [ "$skip" == "true" ] ; then
+    if [ "$skip" = "true" ] ; then
       success "skipped $src"
     fi
   fi
@@ -95,9 +70,6 @@ link_file () {
 
 install_dotfiles () {
   info 'installing dotfiles'
-
-  local overwrite_all=false backup_all=false skip_all=false
-
   for src in $(find -H "${DOTFILES_DIR}" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
   do
     dst="$HOME/.$(basename "${src%.*}")"
@@ -107,22 +79,31 @@ install_dotfiles () {
 
 
 install_package(){
-  cat packages/package_list | xargs sudo ${pkg_mgr} 
+	if command_exists apt-get ; then
+		xargs -a ${DOTFILES_DIR}/packages/package_list sudo apt-get -y -q install 
+	elif command_exists brew ; then
+		xargs -a ${DOTFILES_DIR}/packages/package_list sudo brew install
+	elif command_exists pacman ; then
+		xargs -a ${DOTFILES_DIR}/packages/package_list sudo pacman -S
+	else
+	    error "No valid package manager found!"
+	fi
 }
-
-run_all_install () {
-  for installer in $(find . -maxdepth 2 -name '*install*.sh' -not -path './install.sh'); do
-      info "running ${installer}"
-      sh -c "${installer} ${DOTFILES_DIR}"
-  done
-}
-
 
 main (){
-  echo ''
+  info "Using shell: $(eval "${SHELL} --version")"
+
   install_dotfiles
+
   install_package
-  run_all_install
+  
+  eval "${SHELL} -c ./fonts/install.zsh"
+  eval "${SHELL} -c ./zsh/install.zsh"
+  eval "${SHELL} -c ./tmux/install.zsh"
+  eval "${SHELL} -c ./pip/install.zsh"
+  eval "${SHELL} -c ./vim/install.zsh"
+  eval "${SHELL} -c ./rust/install.zsh"
+
   success '  All installed!'
 }
 

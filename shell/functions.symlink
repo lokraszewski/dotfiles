@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Countdown in seconds
 function countdown(){

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 if [ -t 1 ]; then
     RED=$(printf '\033[31m')

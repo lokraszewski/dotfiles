@@ -1,3 +1,7 @@
+#!/bin/zsh
+
+echo "$(date) -- .zshrc executed" >> $HOME/.zshrc.log
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -10,29 +14,29 @@ fi
 for file in ~/.{path,aliases,functions,extra,bash_prompt}; do
     [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
-unset file;
 
+export ZSH_THEME="powerlevel10k/powerlevel10k"
 source "${HOME}/.zgen/zgen.zsh"
+#export ZSH_THEME="powerlevel10k/powerlevel10k"
 
-#ZSH_THEME=powerlevel10k/powerlevel10k
 # if the init scipt doesn't exist
 if ! zgen saved; then
     echo "Creating a zgen save"
 
-    #zgen oh-my-zsh
+    zgen oh-my-zsh
 
-    #zgen oh-my-zsh plugins/git
-    #zgen oh-my-zsh plugins/sudo
-    #zgen oh-my-zsh plugins/fzf
-    #zgen oh-my-zsh plugins/command-not-found
-    #zgen oh-my-zsh themes/kphoen
-    
-    zgen load romkatv/powerlevel10k powerlevel10k
-    zgen load zsh-users/zsh-syntax-highlighting
+    zgen oh-my-zsh plugins/git
+    zgen oh-my-zsh plugins/sudo
+    zgen oh-my-zsh plugins/fzf
+    zgen oh-my-zsh plugins/command-not-found
+    #zgen load zsh-users/zsh-syntax-highlighting
 
     # save all to init script
     zgen save
 fi
+
+[ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ] && git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

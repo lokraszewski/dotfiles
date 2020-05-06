@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/bin/zsh
+
+source $(pwd)/common.zsh
+
+
 setup_zgen() {
 	local ZGEN_URL=https://github.com/tarjoilija/zgen.git
 	local ZGEN_DIR="${HOME}/.zgen"
@@ -6,6 +10,9 @@ setup_zgen() {
 }
 
 main() {
+	
+
+	
 	if ! command_exists zsh; then
 		error "Zsh is not installed. Please install zsh first."
 		exit 1
@@ -14,5 +21,5 @@ main() {
 	setup_zgen
 }
 
-source $1/common.sh
+info "Running $0"
 main "$@"
