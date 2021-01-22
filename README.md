@@ -4,9 +4,11 @@ These are my personal dotfiles, I am still working on these settings so if you l
 ## install
 
 ```sh
-./install.sh
+./install.sh [full | dev]
 ```
-Run the install script.
+Run the install script with either full/dev or no params (min)
+
+
 
 
 ## Thanks to:

@@ -1,3 +1,0 @@
-cmakelint
-flake8
-termdown
