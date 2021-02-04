@@ -1,0 +1,4 @@
+zsh 
+zplug
+tmux 
+stow

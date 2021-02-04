@@ -1,0 +1,4 @@
+zsh 
+tmux 
+stow
+tldr
