@@ -9,8 +9,6 @@ if [[ "$ZPROF" = true ]]; then
     zmodload zsh/zprof
 fi
 
-export TERM=xterm-256color # Fixes highlight style in tmux
-
 typeset -a sources
 CONFIG_DIR="$HOME/.zsh.d"
 sources+="$CONFIG_DIR/environment.zsh"
