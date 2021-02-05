@@ -7,6 +7,8 @@
 # Alias
 
 #------------------------------------------------------
+
+
 # Automatically Expanding Global Aliases (Space key to expand)
 # references: http://blog.patshead.com/2012/11/automatically-expaning-zsh-global-aliases---simplified.html
 globalias() {

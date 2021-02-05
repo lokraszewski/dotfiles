@@ -1,0 +1,16 @@
+version: '3.6'
+services:
+  dotfiles:
+    image: lokraszewski.dotfiles
+    build:
+      context: "."
+      dockerfile: "Dockerfile"
+    networks:
+      - "default"
+    user: "root"
+    entrypoint:
+      - "/bin/zsh"
+    volumes:
+      - "./:/root/stow"
+networks:
+  default:

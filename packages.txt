@@ -1,0 +1,8 @@
+zsh 
+curl
+zplug
+tmux 
+stow
+tldr
+openssh-server
+git

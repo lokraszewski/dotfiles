@@ -10,10 +10,10 @@ if [[ -z $ZPLUG_HOME ]]; then
     export ZPLUG_HOME=~/.zplug
 fi
 
-# Install zplug if it does not exist
-[ -d $ZPLUG_HOME ] || source ~/.zsh.d/zplug/installer.zsh
 
-source ~/.zplug/init.zsh
+[ ! -f $ZPLUG_HOME/init.zsh ] && git clone https://github.com/zplug/zplug.git $ZPLUG_HOME
+
+source $ZPLUG_HOME/init.zsh
 
 zplug "agkozak/zsh-z"
 zplug "zsh-users/zaw"

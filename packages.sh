@@ -1,18 +1,11 @@
 #!/bin/bash
 # Run this to install required packages.
 
-INSTALL_TYPE=min
-
 command_exists () {
     type "$1" &> /dev/null ;
 }
 
-
-if [ "$#" -ge 1 ] ; then
-    INSTALL_TYPE=$1
-fi
-
-INSTALL_FILE=$(pwd)/packages_${INSTALL_TYPE}.txt
+INSTALL_FILE=$(pwd)/packages.txt
 
 if [[ ! -f $INSTALL_FILE ]]
 then
@@ -21,11 +14,11 @@ then
 fi
 
 if command_exists apt-get ; then
-    cat ${INSTALL_FILE} | xargs sudo apt-get -y -qq install 
+    cat ${INSTALL_FILE} | sed -e 's/#.*//' | xargs apt-get --no-install-recommends -y install 
 elif command_exists brew ; then
-    cat ${INSTALL_FILE} | xargs sudo brew install 
+    cat ${INSTALL_FILE} | sed -e 's/#.*//' | xargs brew install 
 elif command_exists pacman ; then
-    cat ${INSTALL_FILE} | xargs sudo pacman -S 
+    cat ${INSTALL_FILE} | sed -e 's/#.*//' | xargs pacman -S 
 else
     error "No valid package manager found!"
 fi

@@ -1,0 +1,8 @@
+.dockerignore
+Dockerfile
+*.zwc
+.zcompdump
+.git
+.gitignore
+.gitattributes
+.keep

@@ -5,6 +5,9 @@
 #  ███████╗███████║██║  ██║██║  ██║╚██████╗
 #  ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
 
+autoload -Uz is-at-least; is-at-least
+autoload -Uz colors; colors
+
 if [[ "$ZPROF" = true ]]; then
     zmodload zsh/zprof
 fi
