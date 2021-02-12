@@ -8,6 +8,9 @@
 
 bindkey -v
 
+function my-expand-alias() { zle _expand_alias }
+zle -N my-expand-alias
+bindkey '^ ' my-expand-alias
 bindkey '^P' up-history
 bindkey '^N' down-history
 bindkey '^?' backward-delete-char
