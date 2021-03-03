@@ -22,7 +22,7 @@ source $ZPLUG_HOME/init.zsh
 zplug "agkozak/zsh-z"
 zplug "zsh-users/zaw"
 zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "plugins/colorize", from:oh-my-zsh # syntax highlight, use ccat 
+zplug "plugins/colorize", from:oh-my-zsh # syntax highlight, use ccat
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh # lots of useful git aliases
 zplug "plugins/git-flow", from:oh-my-zsh # same but for git flow
@@ -31,7 +31,6 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "mafredri/zsh-async", from:"github"
-# zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 zplug "romkatv/powerlevel10k", as:theme, depth:1
 
 if ! zplug check; then

@@ -20,9 +20,6 @@ globalias() {
 }
 zle -N globalias
 bindkey "^[[Z" globalias
-#bindkey " " globalias
-#bindkey "^[[Z" magic-space
-#bindkey -M isearch " " magic-space
 
 alias -g ND='*(/om[1])'           # newest directory
 alias -g NF='*(.om[1])'           # newest file
@@ -146,7 +143,7 @@ if is-at-least 4.2.0; then
   _media_fts=(ape avi flv m4a mkv mov mp3 mpeg mpg ogg ogm rm wav webm)
   for ft in $_media_fts; do alias -s $ft=mplayer; done
 
-  read documents
+  # read documents
   alias -s ps=gv
   alias -s dvi=xdvi
   alias -s chm=xchm

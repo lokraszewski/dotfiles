@@ -5,6 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
 #  ███████╗███████╗██╗  ██╗██████╗  ██████╗
 #  ╚══███╔╝██╔════╝██║  ██║██╔══██╗██╔════╝
 #    ███╔╝ ███████╗███████║██████╔╝██║
@@ -18,9 +19,9 @@ autoload -Uz colors; colors
 if [[ "$ZPROF" = true ]]; then
     zmodload zsh/zprof
 fi
+CONFIG_DIR="$HOME/.zsh.d"
 
 typeset -a sources
-CONFIG_DIR="$HOME/.zsh.d"
 sources+="$CONFIG_DIR/environment.zsh"
 sources+="$CONFIG_DIR/setopt.zsh"
 sources+="$CONFIG_DIR/functions.zsh"
