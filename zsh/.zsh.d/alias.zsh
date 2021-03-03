@@ -126,11 +126,6 @@ alias ff='find . -type f -name'
 alias h='history'
 alias hgrep="fc -El 0 | grep"
 
-# Safe rm,cp,mv
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-
 # zsh is able to auto-do some kungfoo
 # depends on the SUFFIX :)
 if is-at-least 4.2.0; then
