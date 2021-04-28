@@ -1,4 +1,4 @@
-if [ -z "${NOZSH}" ] && type zsh &> /dev/null
+if [ -z "${NOZSH}" ] && [ $TERM = "xterm" -o $TERM = "xterm-256color" -o $TERM = "screen" -o $TERM = "screen-256color" ] && type zsh &> /dev/null
 then
     export SHELL=$(which zsh)
     if [[ -o login ]]
