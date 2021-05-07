@@ -8,3 +8,4 @@ then
         exec zsh
     fi
 fi
+. "$HOME/.cargo/env"

@@ -8,6 +8,7 @@ kodi/.kodi/addons/
 
 #fonts, UUID 
 /fonts/.local/share/fonts/.uuid
+/fonts/.local
 
 /gtk/.config/gtk-2.0/dbus-daemon
 /gtk/.config/gtk-2.0/.dbus-daemon.sys

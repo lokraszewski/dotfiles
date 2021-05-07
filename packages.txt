@@ -6,3 +6,4 @@ stow
 tldr
 openssh-server
 git
+silversearcher-ag
