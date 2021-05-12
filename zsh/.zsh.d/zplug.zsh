@@ -24,8 +24,6 @@ zplug "zsh-users/zaw"
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/colorize", from:oh-my-zsh # syntax highlight, use ccat
 zplug "plugins/command-not-found", from:oh-my-zsh
-zplug "plugins/git", from:oh-my-zsh # lots of useful git aliases
-zplug "plugins/git-flow", from:oh-my-zsh # same but for git flow
 zplug "plugins/python", from:oh-my-zsh #python completions
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"

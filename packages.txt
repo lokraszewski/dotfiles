@@ -7,3 +7,5 @@ tldr
 openssh-server
 git
 silversearcher-ag
+build-essential
+cmake
