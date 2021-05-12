@@ -62,4 +62,4 @@
 
 	# Gerrit
 	review = !sh -c ‘(([ “sh” = $0 ] && git push origin “head:refs/for/master”) || (git push origin “$0:refs/for/${1-master}”))’
-	sandbox = "!f() { git push origin -b HEAD:refs/for/sandbox/$USER/${1:-$(basename $(git symbolic-ref --short HEAD))}; }; f"
+	sandbox = "!f() { git push origin HEAD:refs/for/sandbox/$USER/${1:-$(basename $(git symbolic-ref --short HEAD))}; }; f"
