@@ -15,3 +15,4 @@ tldr
 tmux
 zplug
 zsh
+nnn

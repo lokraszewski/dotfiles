@@ -8,8 +8,7 @@ kodi/.kodi/userdata/Thumbnails/
 kodi/.kodi/userdata/keymaps
 kodi/.kodi/addons/
 
-#fonts, UUID
-/fonts/.local/share/fonts/.uuid
+/fonts/.local/share/fonts
 /fonts/.local
 
 /gtk/.config/gtk-2.0/dbus-daemon
