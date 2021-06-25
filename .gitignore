@@ -1,3 +1,5 @@
+tags
+
 # Kodi
 /kodi/.kodi/temp/
 /kodi/.kodi/userdata/addon_data/
@@ -6,7 +8,7 @@ kodi/.kodi/userdata/Thumbnails/
 kodi/.kodi/userdata/keymaps
 kodi/.kodi/addons/
 
-#fonts, UUID 
+#fonts, UUID
 /fonts/.local/share/fonts/.uuid
 /fonts/.local
 

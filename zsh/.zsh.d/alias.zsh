@@ -27,7 +27,7 @@ alias -g NE="2> /dev/null"
 alias -g NUL="> /dev/null 2>&1"
 alias -g NO='&>|/dev/null'
 alias -g P='2>&1 | $PAGER'
-alias -g VV='| vim -R -'
+alias -g VV='| nvim -R -'
 alias -g L='| less'
 alias -g M='| most'
 alias -g C='| wc -l'
@@ -45,6 +45,10 @@ alias pug="ps aux | grep -v '0:00 grep' | grep -i"
 alias dfe="df -ht ext4"
 alias zzz="sudo shutdown -P +60"
 alias bye="sudo shutdown -P now"
+
+alias bat=batcat
+alias fd=fdfind
+
 
 # -------------------------------------------------------------------
 # use nocorrect alias to prevent auto correct from "fixing" these
@@ -117,7 +121,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias zshrc='$EDITOR ~/.zshrc' # Quick access to the ~/.zshrc file
 
-alias fd='find . -type d -name'
+alias fdir='find . -type d -name'
 alias ff='find . -type f -name'
 
 alias h='history'

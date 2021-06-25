@@ -31,7 +31,6 @@ sources+="$CONFIG_DIR/bindkey.zsh"
 sources+="$CONFIG_DIR/colors.zsh"
 sources+="$CONFIG_DIR/history.zsh"
 sources+="$CONFIG_DIR/tmux.zsh"
-sources+="$CONFIG_DIR/vim.zsh"
 sources+="$CONFIG_DIR/zaw.zsh"
 sources+="$CONFIG_DIR/completion.zsh"
 

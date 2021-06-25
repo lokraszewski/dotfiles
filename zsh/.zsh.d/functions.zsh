@@ -6,11 +6,6 @@
 #  ╚══════╝╚══════╝╚═╝  ╚═╝
 # Functions
 
-# Load functions
-for file in $CONFIG_DIR/functions/*.zsh; do
-    source $file
-done
-
 # -------------------------------------------------------------------
 # display a neatly formatted path
 # -------------------------------------------------------------------
