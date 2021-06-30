@@ -46,10 +46,6 @@ alias dfe="df -ht ext4"
 alias zzz="sudo shutdown -P +60"
 alias bye="sudo shutdown -P now"
 
-alias bat=batcat
-alias fd=fdfind
-
-
 # -------------------------------------------------------------------
 # use nocorrect alias to prevent auto correct from "fixing" these
 # -------------------------------------------------------------------

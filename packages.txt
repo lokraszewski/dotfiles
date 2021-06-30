@@ -1,10 +1,6 @@
-bat
 build-essential
 cmake
 curl
-exa
-fd-find
-fzf
 git
 jq
 neovim

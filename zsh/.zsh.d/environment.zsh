@@ -6,7 +6,6 @@
 #  ╚══════╝╚══════╝╚═╝  ╚═╝
 # Misc. Environment Variables
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-export GO111MODULE=auto
-export GOPATH=$HOME/go
-export PATH="$HOME/.cask/bin:${GOPATH//://bin:}/bin:$PATH"
+CARGO_PATH=$HOME/.cargo/bin
+export PATH="$CARGO_PATH:$PATH"
 export TERM=xterm-256color # Fixes highlight style in tmux
