@@ -1,0 +1,10 @@
+[include]
+        path = .gitalias
+
+[user]
+        email = work@lokraszewski.com
+        name = Lukasz Okraszewski
+[core]
+        editor = nvim
+[init]
+	defaultBranch = main
